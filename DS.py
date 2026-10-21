@@ -320,3 +320,6 @@ def run_web():
     finally:
         server.server_close()
 
+if __name__ == "__main__":
+    run_web()
+
