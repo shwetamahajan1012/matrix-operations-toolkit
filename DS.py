@@ -1,9 +1,4 @@
-"""Matrix Operations Toolkit - addition, multiplication, transpose
-using 2D lists (arrays) with memory usage analysis.
-Run: python matrix_toolkit.py      -> opens the UI in your browser automatically
-     python matrix_toolkit.py --cli -> old text-menu version
-No installation needed (uses only Python's built-in libraries).
-"""
+
 import json
 import sys
 import threading
