@@ -303,31 +303,20 @@ class Handler(BaseHTTPRequestHandler):
     def log_message(self, *args):  # keep the terminal clean
         pass
 
-
 def run_web():
-    server = None
-    for port in range(5000, 5020):
-        try:
-            server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
-            break
-        except OSError:
-            continue
-    if server is None:
-        print("Could not find a free port.")
-        return
-    url = f"http://127.0.0.1:{server.server_address[1]}"
-    print(f"Matrix Toolkit running at {url}")
-    print("Press Ctrl+C to stop.")
-    threading.Timer(0.8, lambda: webbrowser.open(url)).start()  # opens the browser
+    import os
+
+    host = "0.0.0.0"
+    port = int(os.environ.get("PORT", 10000))
+
+    server = ThreadingHTTPServer((host, port), Handler)
+
+    print(f"Matrix Toolkit running on port {port}")
+
     try:
         server.serve_forever()
     except KeyboardInterrupt:
         print("\nStopped.")
+    finally:
         server.server_close()
 
-
-if __name__ == "__main__":
-    if "--cli" in sys.argv:
-        main()
-    else:
-        run_web()
